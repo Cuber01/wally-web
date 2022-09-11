@@ -61,16 +61,21 @@
 
     <div id="output">Sample text</div>
 
-
 </div>
 
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="./a.out.js"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/javascript");
 
     const btn = document.getElementById("clear");
+
+    const importObject = {
+        imports: { imported_func: (arg) => console.log(arg) },
+    };
+
 
     btn.addEventListener('click', function handleClick() {
         var elem = document.getElementById("output");
