@@ -55,7 +55,7 @@
 
     <!-- onclick do stuff -->
     <button id="run">Run</button>
-    <button >Clear</button>
+    <button id="clear">Clear</button>
     
     <h5 style="margin-top: 50px;">Output</h5>
 
@@ -69,6 +69,14 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/javascript");
+
+    const btn = document.getElementById("clear");
+
+    btn.addEventListener('click', function handleClick() {
+        var elem = document.getElementById("output");
+        elem.textContent = "";
+    });
+
 </script>
 
 </body>
