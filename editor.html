@@ -59,7 +59,7 @@
     
     <h5 style="margin-top: 50px;">Output</h5>
 
-    <div id="output"></div>
+    <textarea name="Output" id="output" cols="80" rows="20" disabled></textarea>
 
 </div>
 
@@ -77,14 +77,14 @@
 
     clearButton.addEventListener('click', function handleClick() {
         outputText = "";
-        document.getElementById("output").textContent = outputText;
+        document.getElementById("output").value = outputText;
     });
 
     runButton.addEventListener('click', function handleClick() {
-        runWally(editor.getValue(), function() { document.getElementById("output").textContent = outputText });
+        runWally(editor.getValue(), function() { 
+            document.getElementById("output").value = outputText;  
+        });
         console.log(outputText);
-        //outputText.replace(/(?:\r\n|\r|\n)/g, 'bruh');
-        
     });
 
 
