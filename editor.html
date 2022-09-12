@@ -73,7 +73,7 @@
     const clearButton = document.getElementById("clear");
     const runButton = document.getElementById("run");
 
-    var outputText = "k\n";
+    let outputText = "";
 
     clearButton.addEventListener('click', function handleClick() {
         outputText = "";
@@ -81,13 +81,11 @@
     });
 
     runButton.addEventListener('click', function handleClick() {
-        runWally(editor.getValue());
+        runWally(editor.getValue(), function() { document.getElementById("output").textContent = outputText });
         console.log(outputText);
         //outputText.replace(/(?:\r\n|\r|\n)/g, 'bruh');
-        document.getElementById("output").textContent = outputText;
+        
     });
-
- 
 
 
 </script>

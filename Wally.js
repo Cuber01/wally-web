@@ -1,6 +1,6 @@
 // This script is modified. Do not replace it with a generated version.
 
-function runWally(codeToRun) 
+function runWally(codeToRun, showOutput) 
 {
 
 var Module = typeof Module !== 'undefined' ? Module : {};
@@ -238,15 +238,13 @@ if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
   throw new Error('environment detection error');
 }
 
-var Module = {
-    'print': function(text) 
-    {
-        outputText = outputText + text;
-    }
-}
-
 // Set up the out() and err() hooks, which are how we can print to stdout or
 // stderr, respectively.
+
+Module['print'] = function(text) { 
+    outputText = outputText + text;
+};
+
 var out = Module['print'] || console.log.bind(console);
 var err = Module['printErr'] || console.warn.bind(console);
 
@@ -1332,6 +1330,7 @@ function postRun() {
   }
 
   callRuntimeCallbacks(__ATPOSTRUN__);
+  showOutput();
 }
 
 function addOnPreRun(cb) {
