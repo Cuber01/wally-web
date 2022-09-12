@@ -59,7 +59,7 @@
     
     <h5 style="margin-top: 50px;">Output</h5>
 
-    <div id="output">Sample text</div>
+    <div id="output"></div>
 
 </div>
 
@@ -70,17 +70,25 @@
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/javascript");
 
-    const btn = document.getElementById("clear");
+    const clearButton = document.getElementById("clear");
+    const runButton = document.getElementById("run");
 
-    const importObject = {
-        imports: { imported_func: (arg) => console.log(arg) },
-    };
+    var outputText = "k\n";
 
-
-    btn.addEventListener('click', function handleClick() {
-        var elem = document.getElementById("output");
-        elem.textContent = "";
+    clearButton.addEventListener('click', function handleClick() {
+        outputText = "";
+        document.getElementById("output").textContent = outputText;
     });
+
+    runButton.addEventListener('click', function handleClick() {
+        runWally(editor.getValue());
+        console.log(outputText);
+        //outputText.replace(/(?:\r\n|\r|\n)/g, 'bruh');
+        document.getElementById("output").textContent = outputText;
+    });
+
+ 
+
 
 </script>
 
