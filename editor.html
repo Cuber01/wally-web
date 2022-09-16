@@ -12,7 +12,7 @@
     #editor {
         border-radius: 3px;
         font-size: 12px;
-        height: 155px;
+        height: 420px;
         width: 600px;
     }
 
@@ -34,7 +34,7 @@
 
 	#main {
 		max-width: 600px;
-		margin: 100px auto;
+		margin: 25px auto;
 	}
 
   </style>
@@ -69,6 +69,7 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/javascript");
+    editor.getSession().setUseWorker(false); // Disable language checker
 
     const clearButton = document.getElementById("clear");
     const runButton = document.getElementById("run");

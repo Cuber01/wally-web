@@ -242,7 +242,11 @@ if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
 // stderr, respectively.
 
 Module['print'] = function(text) { 
-    outputText = outputText + text;
+    outputText = outputText + text + '\n'; // Absolutely no idea why adding \n here is necessary
+};
+
+Module['printErr'] = function(text) { 
+    outputText = outputText + text + '\n';
 };
 
 var out = Module['print'] || console.log.bind(console);
