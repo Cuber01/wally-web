@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Wally on the Web</title>
+  <style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+    }
+
+    #editor {
+        border-radius: 3px;
+        font-size: 12px;
+        height: 420px;
+        width: 600px;
+    }
+
+	#output {
+		border-radius: 5px;
+		border: 1px solid darkgrey;
+		padding: 10px;
+        font-size: 12px;
+	}
+
+    #headerbar {
+        margin:0 auto; 
+        position: relative; 
+        top: 20%; 
+        left: 0; 
+        bottom: 0; 
+        right: 0;
+    }
+
+	#main {
+		max-width: 600px;
+		margin: 25px auto;
+	}
+
+  </style>
+</head>
+<body>
+
+<div id=main>
+    <h1 id="headerbar">
+        <a style="text-decoration: none;" href="https://github.com/Cuber01/Wally">Wally</a>
+    </h1>
+    
+    <pre id="editor">print("Hello World!");
+
+
+
+
+</pre>
+
+    <!-- onclick do stuff -->
+    <button id="run">Run</button>
+    <button id="clear">Clear</button>
+    
+    <h5 style="margin-top: 50px;">Output</h5>
+
+    <textarea name="Output" id="output" cols="80" rows="20" disabled></textarea>
+
+</div>
+
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="./Wally.js"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.session.setMode("ace/mode/javascript");
+    editor.getSession().setUseWorker(false); // Disable language checker
+
+    const clearButton = document.getElementById("clear");
+    const runButton = document.getElementById("run");
+
+    let outputText = "";
+
+    clearButton.addEventListener('click', function handleClick() {
+        outputText = "";
+        document.getElementById("output").value = outputText;
+    });
+
+    runButton.addEventListener('click', function handleClick() {
+        runWally(editor.getValue(), function() { 
+            document.getElementById("output").value = outputText;  
+        });
+        console.log(outputText);
+    });
+
+
+</script>
+
+</body>
+</html>
