@@ -241,11 +241,13 @@ if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
 // Set up the out() and err() hooks, which are how we can print to stdout or
 // stderr, respectively.
 
-Module['print'] = function(text) { 
+Module['print'] = function(text) 
+{ 
     outputText = outputText + text + '\n'; // Absolutely no idea why adding \n here is necessary
 };
 
 Module['printErr'] = function(text) { 
+    if(text.startsWith("program")) return; // Moronic workaround to suppress this one message that haunts me
     outputText = outputText + text + '\n';
 };
 
